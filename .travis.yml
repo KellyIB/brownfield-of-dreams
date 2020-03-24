@@ -6,6 +6,8 @@ services:
   - postgresql
 addons:
   chrome: stable
+before_install:
+  - "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --headless --disable-gpu --remote-debugging-port=9222 http://localhost &"
 script:
   - bundle exec rake db:{create,migrate,seed}
   - bundle exec rspec
