@@ -5,9 +5,7 @@ env:
 services:
   - postgresql
 before_script:
-  - wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
-  - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python2.7.12/bin/
-  - export CHROME_BIN=chromium-browser
+  - bundle exec rails runner "Webdrivers::Chromedriver.update"
 script:
   - bundle exec rake db:{create,migrate,seed}
   - bundle exec rspec
