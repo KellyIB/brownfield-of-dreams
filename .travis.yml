@@ -9,7 +9,7 @@ addons:
 before_install:
   - "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --headless --disable-gpu --remote-debugging-port=9222 http://localhost &"
 before_script:
-  - rm-rf spec/cassettes
+  - rm -rf spec/cassettes
 script:
   - bundle exec rake db:{create,migrate,seed}
   - bundle exec rspec
