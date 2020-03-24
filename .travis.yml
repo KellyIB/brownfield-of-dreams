@@ -5,6 +5,9 @@ env:
 services:
   - postgresql
 before_script:
-  - bundle exec rake db:{create,migrate,seed}
+  - wget http://chromedriver.storage.googleapis.com/2.24/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python2.7.12/bin/
+  - export CHROME_BIN=chromium-browser
 script:
-   - bundle exec rspec
+  - bundle exec rake db:{create,migrate,seed}
+  - bundle exec rspec
