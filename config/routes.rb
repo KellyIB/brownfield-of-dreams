@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
 
-  get '/dashboard', to: 'users#show'
+  get '/dashboard', to: 'users/dashboard#index'
   get '/about', to: 'about#show'
   get '/get_started', to: 'get_started#show'
 

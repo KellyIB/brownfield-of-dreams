@@ -14,6 +14,7 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.configure_rspec_metadata!
   config.filter_sensitive_data("<YOUTUBE_API_KEY>") { ENV['YOUTUBE_API_KEY'] }
+  config.filter_sensitive_data("<GITHUB_TOKEN>") { ENV['GITHUB_TOKEN'] }
 end
 
 
@@ -27,6 +28,7 @@ end
 Capybara.javascript_driver = :selenium_chrome_headless
 
 Capybara.configure do |config|
+  config.server = :puma, { Silent: true }
   config.default_max_wait_time = 5
 end
 

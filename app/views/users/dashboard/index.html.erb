@@ -1,0 +1,21 @@
+<section class="dashboard-main">
+  <h1> <%= current_user.first_name %>'s Dashboard </h1>
+
+  <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
+  <h3>Account Details</h3>
+  <ul>
+    <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
+    <li> <%= current_user.email%> </li>
+  </ul>
+  <section>
+    <h1>Bookmarked Segments</h1>
+  </section>
+  <% if @repos %>
+    <section id='github'>
+      <h1>Github Repositories</h1>
+      <% @repos.each do |repo| %>
+        <p class='github_link'><%= link_to repo.name, repo.link %></p>
+      <% end %>
+    </section>
+  <% end %>
+</section>
