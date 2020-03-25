@@ -9,7 +9,6 @@ class Admin::VideosController < Admin::BaseController
   end
 
   def create
-    # binding.pry
     begin
       tutorial  = Tutorial.find(params[:tutorial_id])
       thumbnail = YouTube::Video.by_id(new_video_params[:video_id]).thumbnail
