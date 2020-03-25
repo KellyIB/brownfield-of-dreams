@@ -13,5 +13,6 @@ before_install:
 before_script:
   - rm -rf spec/cassettes
 script:
-  - bundle exec rake db:{create,migrate,seed}
+  - yarn add stimulus
+  - bundle exec rake db:{create,migrate}
   - bundle exec rspec
