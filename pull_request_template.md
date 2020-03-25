@@ -1,5 +1,5 @@
 ## Description
-Completes User Story #
+Resolves #
 
 ## Type of change
 - [ ] Bug fix (non-breaking change which fixes an issue)
