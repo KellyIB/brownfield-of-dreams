@@ -31,7 +31,7 @@ http_interactions:
       X-Ratelimit-Limit:
       - '60'
       X-Ratelimit-Remaining:
-      - '57'
+      - '58'
       X-Ratelimit-Reset:
       - '1585113403'
       X-Github-Media-Type:
@@ -57,7 +57,7 @@ http_interactions:
       Vary:
       - Accept-Encoding, Accept, X-Requested-With
       X-Github-Request-Id:
-      - D886:0A56:4A7200:792D21:5E7ADB52
+      - D874:62AD:4DD904:7EB991:5E7ADB51
     body:
       encoding: UTF-8
       string: '{"message":"Requires authentication","documentation_url":"https://developer.github.com/v3/repos/#list-your-repositories"}'

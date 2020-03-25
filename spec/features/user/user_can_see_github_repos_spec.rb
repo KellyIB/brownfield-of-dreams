@@ -9,11 +9,12 @@ describe 'As a user' do
       visit '/dashboard'
 
       within('#github') do
-        expect(page).to have_link('Repo Name 1')
-        expect(page).to have_link('Repo Name 2')
-        expect(page).to have_link('Repo Name 3')
-        expect(page).to have_link('Repo Name 4')
-        expect(page).to have_link('Repo Name 5')
+        expect(page).to have_css('.github_link', count: 5)
+        expect(page).to have_link('mod-0')
+        expect(page).to have_link('backend_module_0_capstone')
+        expect(page).to have_link('git_homework')
+        expect(page).to have_link('best_animals')
+        expect(page).to have_link('git_and_gh_practice')
       end
     end
   end
