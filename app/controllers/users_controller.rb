@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   def show
+    if current_user.github_token
+      search_facade = SearchFacade.new
+      @repos = search_facade.get_repos(current_user).first(5)
+    end
   end
 
   def new
@@ -19,8 +23,8 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:email, :first_name, :last_name, :password)
-  end
+    def user_params
+      params.require(:user).permit(:email, :first_name, :last_name, :password)
+    end
 
 end
