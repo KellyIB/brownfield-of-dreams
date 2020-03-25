@@ -1,6 +1,6 @@
 class GithubService
   def get_repo_data(user)
-    response = conn(user).get("/user/repos?sort=updated")
+    response = conn(user).get("/user/repos?sort=created&direction=asc")
     JSON.parse(response.body, symbolize_names:true)
   end
 
