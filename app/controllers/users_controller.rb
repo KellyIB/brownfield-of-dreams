@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   def show
+    search_facade = SearchFacade.new
+    @repos = search_facade.get_repos(current_user)
   end
 
   def new
