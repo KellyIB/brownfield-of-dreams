@@ -4,6 +4,11 @@ class GithubService
     JSON.parse(response.body, symbolize_names:true)
   end
 
+  def get_follower_data(user)
+    response = conn(user).get("/user/followers")
+    JSON.parse(response.body, symbolize_names:true)
+  end
+
   private
 
     def conn(user)
