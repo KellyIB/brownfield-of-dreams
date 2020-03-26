@@ -12,19 +12,23 @@ describe 'User' do
 
     it 'can see links for 5 github repos', :vcr do
       within('#github') do
-        expect(page).to have_css('.github_link', count: 5)
-        expect(page).to have_link('mod-0')
-        expect(page).to have_link('backend_module_0_capstone')
-        expect(page).to have_link('git_homework')
-        expect(page).to have_link('best_animals')
-        expect(page).to have_link('git_and_gh_practice')
+        within('#repos') do
+          expect(page).to have_css('.github_link', count: 5)
+          expect(page).to have_link('mod-0')
+          expect(page).to have_link('backend_module_0_capstone')
+          expect(page).to have_link('git_homework')
+          expect(page).to have_link('best_animals')
+          expect(page).to have_link('git_and_gh_practice')
+        end
       end
     end
 
     it "can not see another user's github repos", :vcr do
       within('#github') do
-        expect(page).to_not have_link('hello-world')
-        expect(page).to_not have_link('Mod0-S3-Practice')
+        within('#repos') do
+          expect(page).to_not have_link('hello-world')
+          expect(page).to_not have_link('Mod0-S3-Practice')
+        end
       end
     end
   end

@@ -10,12 +10,26 @@
   <section>
     <h1>Bookmarked Segments</h1>
   </section>
-  <% if @repos %>
+
+  <% if current_user.github_token %>
     <section id='github'>
-      <h1>Github Repositories</h1>
-      <% @repos.each do |repo| %>
-        <p class='github_link'><%= link_to repo.name, repo.link %></p>
+
+      <section id="repos">
+        <h1>Github Repositories</h1>
+        <% @github_data[:repos].each do |repo| %>
+          <p class='github_link'><%= link_to repo.name, repo.link %></p>
+        <% end %>
+      </section>
+
+      <% if @github_data[:followers] %>
+        <section id="followers">
+          <h1>Github Followers</h1>
+          <% @github_data[:followers].each do |follower| %>
+            <p class='github_link'><%= link_to follower.handle, follower.link %></p>
+          <% end %>
+        </section>
       <% end %>
     </section>
   <% end %>
+
 </section>
