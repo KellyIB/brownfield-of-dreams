@@ -11,7 +11,6 @@ describe 'User' do
     end
 
     it 'can see all github followers', :vcr do
-      save_and_open_page
       within('#github') do
         within('#followers') do
           expect(page).to have_css('.github_link', count: 2)
