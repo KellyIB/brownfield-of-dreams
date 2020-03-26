@@ -10,9 +10,9 @@ describe 'User' do
       visit '/dashboard'
     end
 
-    it 'can see all github followers', :vcr do
+    it 'can see all github following', :vcr do
       within('#github') do
-        within('#followers') do
+        within('#following') do
           expect(page).to have_css('.github_link', count: 2)
           expect(page).to have_link('rcallen89')
           expect(page).to have_link('iEv0lv3')

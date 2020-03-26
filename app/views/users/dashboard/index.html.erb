@@ -29,6 +29,16 @@
           <% end %>
         </section>
       <% end %>
+
+      <% if @github_data[:following] %>
+        <section id="following">
+          <h1>Github Following</h1>
+          <% @github_data[:following].each do |followed| %>
+            <p class='github_link'><%= link_to followed.handle, followed.link %></p>
+          <% end %>
+        </section>
+      <% end %>
+
     </section>
   <% end %>
 
