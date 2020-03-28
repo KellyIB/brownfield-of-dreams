@@ -29,22 +29,24 @@ gem 'will_paginate'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'omniauth-census', git: "https://github.com/turingschool-projects/omniauth-census"
 
-
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails'
   gem 'foundation-rails'
-  gem 'database_cleaner'
   gem 'pry'
-  gem 'capybara'
-  gem 'launchy'
-  gem 'shoulda-matchers'
   gem 'awesome_print'
-  gem 'webmock'
-  gem 'simplecov'
-  gem 'vcr'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
+  gem 'simplecov'
+  gem 'rspec-rails'
+  gem 'webmock'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'vcr'
 end
 
 group :development do
