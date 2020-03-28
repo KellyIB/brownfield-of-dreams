@@ -2,6 +2,7 @@
   <h1> <%= current_user.first_name %>'s Dashboard </h1>
 
   <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
+  <%= link_to 'Connect to GitHub', github_login_path %>
   <h3>Account Details</h3>
   <ul>
     <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
@@ -14,26 +15,28 @@
   <% if current_user.github_token %>
     <section id='github'>
 
-      <section id="repos">
-        <h1>Github Repositories</h1>
-        <% @github_data[:repos].each do |repo| %>
-          <p class='github_link'><%= link_to repo.name, repo.link %></p>
-        <% end %>
-      </section>
+      <% if @search_facade.get_repos %>
+        <section id="repos">
+          <h1>Github Repositories</h1>
+          <% @search_facade.get_repos.each do |repo| %>
+            <p class='github_link'><%= link_to repo.name, repo.link %></p>
+          <% end %>
+        </section>
+      <% end %>
 
-      <% if @github_data[:followers] %>
+      <% if @search_facade.get_followers %>
         <section id="followers">
           <h1>Github Followers</h1>
-          <% @github_data[:followers].each do |follower| %>
+          <% @search_facade.get_followers.each do |follower| %>
             <p class='github_link'><%= link_to follower.handle, follower.link %></p>
           <% end %>
         </section>
       <% end %>
 
-      <% if @github_data[:following] %>
+      <% if @search_facade.get_following %>
         <section id="following">
           <h1>Github Following</h1>
-          <% @github_data[:following].each do |followed| %>
+          <% @search_facade.get_following.each do |followed| %>
             <p class='github_link'><%= link_to followed.handle, followed.link %></p>
           <% end %>
         </section>
