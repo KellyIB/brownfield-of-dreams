@@ -1,14 +1,14 @@
 class GithubService
   def get_repo_data(user)
-    response = get_json(user, "/user/repos?sort=created&direction=asc")
+    get_json(user, "/user/repos?sort=created&direction=asc")
   end
 
   def get_follower_data(user)
-    response = get_json(user, "/user/followers")
+    get_json(user, "/user/followers")
   end
 
   def get_following_data(user)
-    response = get_json(user, "/user/following")
+    get_json(user, "/user/following")
   end
 
   private

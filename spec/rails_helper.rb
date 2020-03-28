@@ -5,8 +5,6 @@ require File.expand_path('../../config/environment', __FILE__)
 
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
-require 'vcr'
-require 'webmock/rspec'
 
 VCR.configure do |config|
   config.ignore_localhost = true
@@ -16,7 +14,6 @@ VCR.configure do |config|
   config.filter_sensitive_data("<YOUTUBE_API_KEY>") { ENV['YOUTUBE_API_KEY'] }
   config.filter_sensitive_data("<GITHUB_TOKEN>") { ENV['GITHUB_TOKEN'] }
 end
-
 
 ActiveRecord::Migration.maintain_test_schema!
 
