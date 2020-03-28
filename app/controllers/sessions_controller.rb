@@ -14,6 +14,13 @@ class SessionsController < ApplicationController
     end
   end
 
+  def update
+    user_data = request.env['omniauth.auth']
+    current_user.update_column(:github_token, user_data[:credentials][:token] )
+    redirect_to dashboard_path
+  end
+
+
   def destroy
     session[:user_id] = nil
     redirect_to root_path
