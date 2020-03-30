@@ -1,11 +1,12 @@
 class Users::FriendsController < ApplicationController
 
   def create
-    friend = UserFriend.create(user_id: current_user.id, friend_id: params[:friend_id])
-    if friend.save
+    friend = User.find_by(github_id: params[:friend_github_id])
+    addedFriend = UserFriend.new(user: current_user, friend: friend)
+    if addedFriend.save
       flash[:success] = "A friend was added to your friend list!"
     else
-      flash[:error] = friend.errors.full_messages.to_sentence
+      addedFlash[:error] = addedFriend.errors.full_messages.to_sentence
     end
     redirect_to '/dashboard'
   end
