@@ -8,8 +8,14 @@
     <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
     <li> <%= current_user.email%> </li>
   </ul>
-  <section>
+
+  <section id='bookmarks'>
     <h1>Bookmarked Segments</h1>
+    <% unless current_user.videos.empty? %>
+      <% current_user.videos.each do |video| %>
+        <p class='video_link'><%= link_to video.title, tutorial_path(video.tutorial_id, video_id: video.id) %></p>
+      <% end %>
+    <% end %>
   </section>
 
   <% if current_user.github_token %>
