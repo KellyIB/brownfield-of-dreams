@@ -4,6 +4,7 @@ describe 'User' do
   describe 'with a github token:' do
     before(:each) do
       user = create(:user, github_token: '123456')
+      create(:user, github_token: '119404', github_id: '10391891')
       create(:user, github_token: '109824', github_id: '10391857')
 
       repo_json = File.read('spec/fixtures/github_repos.json')
@@ -29,6 +30,11 @@ describe 'User' do
           end
           within('#follower-rcallen89') do
             expect(page).to_not have_link('Add as Friend')
+          end
+        end
+        within('#following') do
+          within('#following-SantaClaus') do
+            expect(page).to have_link('Add as Friend')
           end
         end
       end
