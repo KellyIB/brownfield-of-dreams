@@ -4,7 +4,7 @@ describe 'User' do
   describe 'with a github token:' do
     before(:each) do
       user = create(:user, github_token: 'token 123456')
-      create(:user, github_token: 'token 109824')
+      create(:user, github_token: 'token 109824', github_id: '10391857')
 
       repo_json = File.read('spec/fixtures/github_repos.json')
       followers_json = File.read('spec/fixtures/github_followers.json')
@@ -32,6 +32,14 @@ describe 'User' do
           end
         end
       end
+    end
+
+    it 'can add a follower to friends' do
+      expect(page).to_not have_css('#friends')
+
+      within('#follower-iEv0lv3') { click_link('Add as Friend') }
+
+      within('#friends') { expect(page).to have_css('.friend', count: 1) }
     end
   end
 end
