@@ -8,6 +8,12 @@ describe 'A registered user' do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
+    visit dashboard_path
+    
+    within('#bookmarks') do
+      expect(page).to_not have_css('.video_link')
+    end
+
     visit tutorial_path(tutorial)
 
     expect {
@@ -15,6 +21,12 @@ describe 'A registered user' do
     }.to change { UserVideo.count }.by(1)
 
     expect(page).to have_content("Bookmark added to your dashboard")
+
+    visit dashboard_path
+
+    within('#bookmarks') do
+      expect(page).to have_css('.video_link', count: 1)
+    end
   end
 
   it "can't add the same bookmark more than once" do
