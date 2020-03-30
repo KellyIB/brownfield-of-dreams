@@ -8,7 +8,7 @@ class Follower
   end
 
   def registered?
-    @id && User.exists?(github_id: @id)
+    User.exists?(github_id: @id)
   end
 
 end
