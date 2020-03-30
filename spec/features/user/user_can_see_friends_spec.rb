@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'User' do
   describe 'with a github token:' do
     before(:each) do
-      user = create(:user, github_token: 'token 123456')
-      create(:user, github_token: 'token 109824', github_id: '10391857')
+      user = create(:user, github_token: '123456')
+      create(:user, github_token: '109824', github_id: '10391857')
 
       repo_json = File.read('spec/fixtures/github_repos.json')
       followers_json = File.read('spec/fixtures/github_followers.json')
