@@ -29,4 +29,17 @@ RSpec.describe User, type: :model do
       expect(admin.admin?).to be_truthy
     end
   end
+
+  describe 'methods' do
+    it 'friend?' do
+      user_1 = create(:user, github_id: '123', github_token: 'z0z9zu')
+      user_2 = create(:user, github_id: '567', github_token: 'q3w4e5')
+
+      expect(user_1.friend?(user_2.github_id)).to eq(false)
+
+      UserFriend.create(user: user_1, friend: user_2)
+
+      expect(user_1.friend?(user_2.github_id)).to eq(true)
+    end
+  end
 end
