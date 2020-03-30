@@ -11,17 +11,15 @@
 
 
   <section id='bookmarks'>
-  <h1>Bookmarked Segments</h1>
-  <% if current_user.has_videos? %>
-    <% current_user.bookmarked_tutorial_videos(current_user).each do |tutorial| %>
-      <section id="tutorial-<%=tutorial.id %>">
-          <h3></h3><%= link_to tutorial.title, tutorial_path(tutorial) %>
-          <% tutorial.videos.each do |video| %>
-            <h4><%= video.title %></h4>
-          <% end %>
+    <h1>Bookmarked Segments</h1>
+      <% current_user.sorted_bookmarks.each.with_index do |video, index| %>
+        <section id="video-<%= index + 1 %>">
+          <p>
+            <%= link_to video.tutorial.title, tutorial_path(video.tutorial) %> -
+            <%= link_to video.title, tutorial_path(video.tutorial_id, video_id: video.id) %>
+          </p>
         </section>
       <% end %>
-    <% end %>
   </section>
 
   <% if current_user.github_token %>
