@@ -28,7 +28,9 @@
         <section id="followers">
           <h1>Github Followers</h1>
           <% @search_facade.get_followers.each do |follower| %>
-            <p class='github_link'><%= link_to follower.handle, follower.link %></p>
+            <p class='github_link' id="follower-<%= follower.handle %>">
+              <%= link_to follower.handle, follower.link %>
+            </p>
           <% end %>
         </section>
       <% end %>
