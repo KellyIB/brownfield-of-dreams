@@ -39,6 +39,10 @@ describe 'User' do
 
       within('#follower-iEv0lv3') { click_link('Add as Friend') }
 
+      expect(current_path).to eq('/dashboard')
+
+      within('#follower-iEv0lv3') { expect(page).to_not have_link('Add as Friend') }
+
       within('#friends') { expect(page).to have_css('.friend', count: 1) }
     end
   end
