@@ -6,7 +6,7 @@ class Users::FriendsController < ApplicationController
     if addedFriend.save
       flash[:success] = "A friend was added to your friend list!"
     else
-      addedFlash[:error] = addedFriend.errors.full_messages.to_sentence
+      flash[:error] = addedFriend.errors.full_messages.to_sentence
     end
     redirect_to '/dashboard'
   end
