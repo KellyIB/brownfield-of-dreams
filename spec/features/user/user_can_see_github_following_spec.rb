@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'User' do
   describe 'with a github token:' do
     before(:each) do
-      user = create(:user, github_token: 'token 123456')
-      create(:user, github_token: 'token 109824')
+      user = create(:user, github_token: '123456')
+      create(:user, github_token: '109824')
 
       repo_json = File.read('spec/fixtures/github_repos.json')
       followers_json = File.read('spec/fixtures/github_followers.json')
@@ -25,7 +25,7 @@ describe 'User' do
       within('#github') do
         within('#following') do
           expect(page).to have_css('.github_link', count: 1)
-          expect(page).to have_link('Santa Claus')
+          expect(page).to have_link('SantaClaus')
         end
       end
     end

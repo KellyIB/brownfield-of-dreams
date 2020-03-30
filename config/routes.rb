@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   delete '/logout', to: "sessions#destroy"
 
   get '/dashboard', to: 'users/dashboard#index'
+  post '/dashboard/add_friend', to: 'users/friends#create'
 
   get '/auth/github', as: 'github_login'
   get '/auth/:provider/callback', to: 'sessions#update'

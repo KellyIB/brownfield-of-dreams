@@ -1,11 +1,14 @@
 class Follower
-  attr_reader :handle, :link
+  attr_reader :handle, :link, :id
 
   def initialize(attributes)
     @handle = attributes[:login]
     @link = attributes[:html_url]
+    @id = attributes[:id]
   end
 
-# get_follower_data(user)
+  def registered?
+    User.exists?(github_id: @id)
+  end
 
 end
