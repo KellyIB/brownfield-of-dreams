@@ -9,7 +9,6 @@
     <li> <%= current_user.email%> </li>
   </ul>
 
-
   <section id='bookmarks'>
     <h1>Bookmarked Segments</h1>
       <% current_user.sorted_bookmarks.each.with_index do |video, index| %>
