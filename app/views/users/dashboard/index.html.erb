@@ -40,7 +40,7 @@
         <section id="following">
           <h1>Github Following</h1>
           <% @search_facade.get_following.each do |followed| %>
-            <p class='github_link'>
+            <p class='github_link' id="following-<%= followed.handle %>">
               <%= link_to followed.handle, followed.link %>
               <%= link_to("Add as Friend", "/dashboard/add_friend?friend_github_id=#{followed.id}", method: :post, class: "btn btn-primary mb1 bg-teal") if followed.registered? && !current_user.friend?(followed.id) %>
             </p>
