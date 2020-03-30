@@ -30,7 +30,7 @@
           <% @search_facade.get_followers.each do |follower| %>
             <p class='github_link' id="follower-<%= follower.handle %>">
               <%= link_to follower.handle, follower.link %>
-              <%= link_to("Add as Friend", "/dashboard/add_friend?id=#{follower.id}", method: :post, class: "btn btn-primary mb1 bg-teal") if follower.registered? %>
+              <%= link_to("Add as Friend", "/dashboard/add_friend?friend_id=#{follower.id}", method: :post, class: "btn btn-primary mb1 bg-teal") if follower.registered? %>
             </p>
           <% end %>
         </section>
@@ -42,7 +42,7 @@
           <% @search_facade.get_following.each do |followed| %>
             <p class='github_link'>
               <%= link_to followed.handle, followed.link %>
-              <%= link_to("Add as Friend", "/dashboard/add_friend?id=#{followed.id}", method: :post, class: "btn btn-primary mb1 bg-teal") if followed.registered? %>
+              <%= link_to("Add as Friend", "/dashboard/add_friend?friend_id=#{followed.id}", method: :post, class: "btn btn-primary mb1 bg-teal") if followed.registered? %>
             </p>
           <% end %>
         </section>
