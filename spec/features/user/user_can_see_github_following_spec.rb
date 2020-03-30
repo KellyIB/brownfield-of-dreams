@@ -25,7 +25,7 @@ describe 'User' do
       within('#github') do
         within('#following') do
           expect(page).to have_css('.github_link', count: 1)
-          expect(page).to have_link('Santa Claus')
+          expect(page).to have_link('SantaClaus')
         end
       end
     end
