@@ -9,4 +9,9 @@ class User < ApplicationRecord
   validates_presence_of :first_name
   enum role: [:default, :admin]
   has_secure_password
+
+  def friend?(id)
+    friend = User.find_by(github_id: id)
+    friends.include?(friend)
+  end
 end
