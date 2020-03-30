@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :user_videos
   has_many :videos, through: :user_videos
+  has_many :user_friends
+  has_many :friends, through: :user_friends
 
   validates :email, uniqueness: true, presence: true
   validates_presence_of :password_digest
