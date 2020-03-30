@@ -45,5 +45,17 @@ describe 'User' do
 
       within('#friends') { expect(page).to have_css('.friend', count: 1) }
     end
+
+    it 'gets an error when adding invalid friend' do
+      expect(page).to_not have_css('#friends')
+
+      User.last.destroy
+      within('#follower-iEv0lv3') { click_link('Add as Friend') }
+
+      expect(current_path).to eq('/dashboard')
+
+      expect(page).to_not have_css('#friends')
+      expect(page).to have_content('Friend must exist')
+    end
   end
 end
