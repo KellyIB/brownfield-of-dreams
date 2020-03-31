@@ -20,6 +20,12 @@ class User < ApplicationRecord
     videos.order(:tutorial_id, :position)
   end
 
+  def activate
+    self.status = 'active'
+    self.confirmation_token = nil
+    save
+  end
+
   private
 
     def set_confirmation_token
