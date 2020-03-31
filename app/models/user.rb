@@ -14,4 +14,9 @@ class User < ApplicationRecord
     friend = User.find_by(github_id: id)
     friends.include?(friend)
   end
+
+  def sorted_bookmarks
+    videos.order(:tutorial_id, :position)
+  end
+
 end

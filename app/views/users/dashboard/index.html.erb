@@ -8,8 +8,17 @@
     <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
     <li> <%= current_user.email%> </li>
   </ul>
-  <section>
+
+  <section id='bookmarks'>
     <h1>Bookmarked Segments</h1>
+      <% current_user.sorted_bookmarks.each.with_index do |video, index| %>
+        <section id="video-<%= index + 1 %>">
+          <p>
+            <%= link_to video.tutorial.title, tutorial_path(video.tutorial) %> -
+            <%= link_to video.title, tutorial_path(video.tutorial_id, video_id: video.id) %>
+          </p>
+        </section>
+      <% end %>
   </section>
 
   <% if current_user.github_token %>
@@ -58,7 +67,6 @@
           <% end %>
         </section>
       <% end %>
-
     </section>
   <% end %>
 
