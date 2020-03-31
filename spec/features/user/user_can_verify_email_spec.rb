@@ -28,5 +28,10 @@ describe 'Registered user' do
 
     expect(current_path).to eq(root_path)
     expect(page).to have_content("Something went wrong.")
+
+    visit dashboard_path
+
+    expect(page).to_not have_content("Status: active")
+    expect(page).to have_content("Status: inactive - This account has not yet been activated. Please check your email.")
   end
 end
