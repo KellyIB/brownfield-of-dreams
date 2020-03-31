@@ -7,10 +7,11 @@
   <ul>
     <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
     <li> <%= current_user.email%> </li>
-    <li> <%= current_user.status %></li>
-    <% if current_user.status = 'inactive' %>
-      <p>This account has not yet been activated. Please check your email.</p>
+    <li> Status: <%= current_user.status %>
+    <% if current_user.status == 'inactive' %>
+      - This account has not yet been activated. Please check your email.
     <% end %>
+    </li>
   </ul>
 
   <section id='bookmarks'>
