@@ -62,5 +62,17 @@ RSpec.describe User, type: :model do
 
       expect(user.sorted_bookmarks).to eq([video1, video2, video4, video5, video3])
     end
+
+    it 'activate' do
+      user = create(:user)
+
+      expect(user.confirmation_token.blank?).to eq(false)
+      expect(user.status).to eq('inactive')
+
+      user.activate
+
+      expect(user.confirmation_token.blank?).to eq(true)
+      expect(user.status).to eq('active')
+    end
   end
 end
