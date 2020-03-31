@@ -9,6 +9,8 @@ class User < ApplicationRecord
   enum role: [:default, :admin]
   has_secure_password
 
+  before_create :set_confirmation_token
+
   def friend?(id)
     friend = User.find_by(github_id: id)
     friends.include?(friend)
@@ -17,5 +19,13 @@ class User < ApplicationRecord
   def sorted_bookmarks
     videos.order(:tutorial_id, :position)
   end
+
+  private
+
+    def set_confirmation_token
+      if self.confirmation_token.blank?
+          self.confirmation_token = SecureRandom.urlsafe_base64.to_s
+      end
+    end
 
 end
