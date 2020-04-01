@@ -8,6 +8,7 @@ describe 'Registered user' do
     repo_json = File.read('spec/fixtures/github_repos.json')
     followers_json = File.read('spec/fixtures/github_followers.json')
     following_json = File.read('spec/fixtures/github_following.json')
+
     user_json = File.read('spec/fixtures/github_user.json')
     user_json_2 = File.read('spec/fixtures/github_user_2.json')
 

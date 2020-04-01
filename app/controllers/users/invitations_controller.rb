@@ -1,6 +1,5 @@
 class Users::InvitationsController < ApplicationController
   def new
-
   end
 
   def create
