@@ -32,15 +32,18 @@ RSpec.describe User, type: :model do
   end
 
   describe 'methods' do
-    it 'friend?' do
+    it 'friendable?' do
       user_1 = create(:user, github_id: '123', github_token: 'z0z9zu')
       user_2 = create(:user, github_id: '567', github_token: 'q3w4e5')
+      unregistered_follower = Follower.new(handle: 'not-friend', link: 'gh', id: '890')
+      registered_follower = Follower.new(handle: 'friend', link: 'gh', id: '567')
 
-      expect(user_1.friend?(user_2.github_id)).to eq(false)
+      expect(user_1.friendable?(unregistered_follower)).to eq(false)
+      expect(user_1.friendable?(registered_follower)).to eq(true)
 
       UserFriend.create(user: user_1, friend: user_2)
 
-      expect(user_1.friend?(user_2.github_id)).to eq(true)
+      expect(user_1.friendable?(registered_follower)).to eq(false)
     end
 
     it 'sorted_bookmarks' do
