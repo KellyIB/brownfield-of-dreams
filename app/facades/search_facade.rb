@@ -26,8 +26,8 @@ class SearchFacade
     end
   end
 
-  def get_user_email(user_handle)
+  def get_user(user_handle)
     user_data = @service.get_user_data(@user, user_handle)
-    user_data[:email]
+    GithubUser.new(user_data)
   end
 end
