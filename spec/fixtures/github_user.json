@@ -1,0 +1,14 @@
+{
+    "login": "test-user",
+    "id": 12340987,
+    "url": "https://api.github.com/users/test-user",
+    "html_url": "https://github.com/test-user",
+    "type": "User",
+    "name": "Test User",
+    "company": null,
+    "blog": "",
+    "location": "Denver, CO",
+    "email": "test-user@example.com",
+    "hireable": null,
+    "bio": null
+}
