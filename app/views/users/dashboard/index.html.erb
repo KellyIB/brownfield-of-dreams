@@ -44,7 +44,7 @@
           <% @search_facade.get_followers.each do |follower| %>
             <p class='github_link' id="follower-<%= follower.handle %>">
               <%= link_to follower.handle, follower.link %>
-              <%= link_to("Add as Friend", "/dashboard/add_friend?friend_github_id=#{follower.id}", method: :post, class: "btn btn-primary mb1 bg-teal") if follower.registered? && !current_user.friend?(follower.id) %>
+              <%= link_to("Add as Friend", "/dashboard/add_friend?friend_github_id=#{follower.id}", method: :post, class: "btn btn-primary mb1 bg-teal") if current_user.friendable?(follower) %>
             </p>
           <% end %>
         </section>
@@ -56,7 +56,7 @@
           <% @search_facade.get_following.each do |followed| %>
             <p class='github_link' id="following-<%= followed.handle %>">
               <%= link_to followed.handle, followed.link %>
-              <%= link_to("Add as Friend", "/dashboard/add_friend?friend_github_id=#{followed.id}", method: :post, class: "btn btn-primary mb1 bg-teal") if followed.registered? && !current_user.friend?(followed.id) %>
+              <%= link_to("Add as Friend", "/dashboard/add_friend?friend_github_id=#{followed.id}", method: :post, class: "btn btn-primary mb1 bg-teal") if current_user.friendable?(followed) %>
             </p>
           <% end %>
         </section>

@@ -6,9 +6,4 @@ class Follower
     @link = attributes[:html_url]
     @id = attributes[:id]
   end
-
-  def registered?
-    User.exists?(github_id: @id)
-  end
-
 end
