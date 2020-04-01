@@ -4,19 +4,29 @@ describe 'User' do
   describe 'with a github token:' do
     before(:each) do
       user = create(:user, github_token: '123456')
-      create(:user, github_token: '109824')
+      user2 = create(:user, github_token: '109824')
 
       repo_json = File.read('spec/fixtures/github_repos.json')
+      repo_json_2 = File.read('spec/fixtures/github_repos_2.json')
       followers_json = File.read('spec/fixtures/github_followers.json')
       following_json = File.read('spec/fixtures/github_following.json')
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-      stub_request(:get, "https://api.github.com/user/repos?direction=asc&sort=created")
-        .to_return(status: 200, body: repo_json)
-      stub_request(:get, "https://api.github.com/user/followers")
-        .to_return(status: 200, body: followers_json)
-      stub_request(:get, "https://api.github.com/user/following")
-        .to_return(status: 200, body: following_json)
+      requests = ['repos?direction=asc&sort=created', 'followers', 'following']
+      responses = [repo_json, followers_json, following_json]
+      responses_2 = [repo_json_2, followers_json, following_json]
+
+      requests.zip(responses).each do |request, response_body|
+        stub_request(:get, "https://api.github.com/user/#{request}")\
+          .with(headers: {"Authorization" => "token #{user.github_token}"})
+          .to_return(status: 200, body: response_body)
+      end
+
+      requests.zip(responses_2).each do |request, response_body|
+        stub_request(:get, "https://api.github.com/user/#{request}")\
+          .with(headers: {"Authorization" => "token #{user2.github_token}"})
+          .to_return(status: 200, body: response_body)
+      end
 
       visit '/dashboard'
     end
@@ -31,18 +41,11 @@ describe 'User' do
           expect(page).to have_link('git_homework')
           expect(page).to have_link('best_animals')
           expect(page).to have_link('git_and_gh_practice')
+          expect(page).to_not have_link('not_my_repo')
+          expect(page).to_not have_link('other-users-repo')
         end
       end
     end
-
-    # it "can not see another user's github repos" do
-    #   within('#github') do
-    #     within('#repos') do
-    #       expect(page).to_not have_link('hello-world')
-    #       expect(page).to_not have_link('Mod0-S3-Practice')
-    #     end
-    #   end
-    # end
   end
 
   describe 'without a github token:' do
