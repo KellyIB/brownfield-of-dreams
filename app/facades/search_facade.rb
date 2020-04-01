@@ -25,4 +25,9 @@ class SearchFacade
       Follower.new(followed_attributes)
     end
   end
+
+  def get_user_email(user_handle)
+    user_data = @service.get_user_data(@user, user_handle)
+    user_data[:email]
+  end
 end
