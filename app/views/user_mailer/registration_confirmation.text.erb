@@ -1,0 +1,5 @@
+Hi <%= @user.first_name %> <%= @user.last_name %>.
+
+Thank you for registering an account on Turing Tutorials.
+
+Visit <%= link_to 'here', user_activate_url(@user, token: @user.confirmation_token), method: :patch %> to activate your account.

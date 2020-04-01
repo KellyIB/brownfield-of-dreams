@@ -4,6 +4,7 @@ RSpec.describe User, type: :model do
   describe 'validations' do
     it {should validate_presence_of(:email)}
     it {should validate_presence_of(:first_name)}
+    it {should validate_presence_of(:last_name)}
     it {should validate_presence_of(:password)}
   end
 
@@ -60,6 +61,18 @@ RSpec.describe User, type: :model do
       create(:user_video, video_id: video1.id, user_id: user.id)
 
       expect(user.sorted_bookmarks).to eq([video1, video2, video4, video5, video3])
+    end
+
+    it 'activate' do
+      user = create(:user)
+
+      expect(user.confirmation_token.blank?).to eq(false)
+      expect(user.status).to eq('inactive')
+
+      user.activate
+
+      expect(user.confirmation_token.blank?).to eq(true)
+      expect(user.status).to eq('active')
     end
   end
 end

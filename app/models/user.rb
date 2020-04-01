@@ -5,10 +5,11 @@ class User < ApplicationRecord
   has_many :friends, through: :user_friends
 
   validates :email, uniqueness: true, presence: true
-  validates_presence_of :password_digest
-  validates_presence_of :first_name
+  validates_presence_of :password_digest, :first_name, :last_name
   enum role: [:default, :admin]
   has_secure_password
+
+  before_create :set_confirmation_token
 
   def friend?(id)
     friend = User.find_by(github_id: id)
@@ -18,5 +19,19 @@ class User < ApplicationRecord
   def sorted_bookmarks
     videos.order(:tutorial_id, :position)
   end
+
+  def activate
+    self.status = 'active'
+    self.confirmation_token = nil
+    save
+  end
+
+  private
+
+    def set_confirmation_token
+      if self.confirmation_token.blank?
+          self.confirmation_token = SecureRandom.urlsafe_base64.to_s
+      end
+    end
 
 end
