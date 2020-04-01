@@ -8,6 +8,6 @@ describe 'Visitor' do
     visit tutorial_path(tutorial)
 
     expect(page).to_not have_button('Bookmark')
-    expect(page).to have_content('Must login to add bookmarks')
+    expect(page).to have_content('Bookmark')
   end
 end
