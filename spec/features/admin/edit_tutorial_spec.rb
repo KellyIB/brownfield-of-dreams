@@ -37,5 +37,6 @@ describe 'Admin' do
     expect(current_path).to eq(edit_admin_tutorial_path(tutorial))
 
     expect(page).to have_content('Unable to create video')
+    expect(page).to_not have_content('How to tie your shoes.')
   end
 end

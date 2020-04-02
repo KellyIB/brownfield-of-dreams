@@ -9,14 +9,14 @@ class Admin::VideosController < Admin::BaseController
 
       flash[:success] = 'Successfully created video.'
     rescue StandardError
-      flash[:error] = 'Unable to create video'
+      flash[:error] = 'Unable to create video.'
     end
 
     redirect_to edit_admin_tutorial_path(id: tutorial.id)
   end
 
   private
-  
+
     def new_video_params
       params.require(:video).permit(:title, :description, :video_id, :thumbnail)
     end
