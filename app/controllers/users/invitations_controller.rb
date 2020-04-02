@@ -1,4 +1,4 @@
-class Users::InvitationsController < ApplicationController
+class Users::InvitationsController < Users::BaseController
   def new; end
 
   def create

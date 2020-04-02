@@ -1,4 +1,4 @@
-class Users::FriendsController < ApplicationController
+class Users::FriendsController < Users::BaseController
   def create
     friend = User.find_by(github_id: params[:friend_github_id])
     new_friend = UserFriend.new(user: current_user, friend: friend)
