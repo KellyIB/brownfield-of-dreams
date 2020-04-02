@@ -14,22 +14,23 @@ describe 'User' do
       OmniAuth.config.test_mode = true
 
       OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
-        {"provider" => "github",
-        "info" => {"name" => "Test"},
-        "credentials" =>
-          {"token" => "123456",
-            "expires" => false},
-          "extra" =>
-            {"raw_info" =>
-              {"login" => "test-user",
-                "html_url" => "htps://github.com/test-user",
-                "name" => "Test User"}}})
+        { 'provider' => 'github',
+          'info' => { 'name' => 'Test' },
+          'credentials' =>
+          { 'token' => '123456',
+            'expires' => false },
+          'extra' =>
+            { 'raw_info' =>
+              { 'login' => 'test-user',
+                'html_url' => 'htps://github.com/test-user',
+                'name' => 'Test User' } } }
+      )
 
-      stub_request(:get, "https://api.github.com/user/repos?direction=asc&sort=created")
+      stub_request(:get, 'https://api.github.com/user/repos?direction=asc&sort=created')
         .to_return(status: 200, body: repo_json)
-      stub_request(:get, "https://api.github.com/user/followers")
+      stub_request(:get, 'https://api.github.com/user/followers')
         .to_return(status: 200, body: followers_json)
-      stub_request(:get, "https://api.github.com/user/following")
+      stub_request(:get, 'https://api.github.com/user/following')
         .to_return(status: 200, body: following_json)
     end
 

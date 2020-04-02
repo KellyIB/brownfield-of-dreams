@@ -23,11 +23,11 @@ describe 'Visitor', type: :feature do
     fill_in 'user[password]', with: password
     fill_in 'user[password_confirmation]', with: password
 
-    click_on'Create Account'
+    click_on 'Create Account'
 
     expect(current_path).to eq(dashboard_path)
 
-    expect(page).to have_content("Logged in as Lionel Prichert.")
-    expect(page).to have_content("This account has not yet been activated. Please check your email.")
+    expect(page).to have_content('Logged in as Lionel Prichert.')
+    expect(page).to have_content('This account has not yet been activated. Please check your email.')
   end
 end
