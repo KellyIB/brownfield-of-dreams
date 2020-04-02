@@ -18,13 +18,13 @@ describe 'User' do
 
       requests.zip(responses).each do |request, response_body|
         stub_request(:get, "https://api.github.com/user/#{request}")\
-          .with(headers: {"Authorization" => "token #{user.github_token}"})
+          .with(headers: { 'Authorization' => "token #{user.github_token}" })
           .to_return(status: 200, body: response_body)
       end
 
       requests.zip(responses_2).each do |request, response_body|
         stub_request(:get, "https://api.github.com/user/#{request}")\
-          .with(headers: {"Authorization" => "token #{user2.github_token}"})
+          .with(headers: { 'Authorization' => "token #{user2.github_token}" })
           .to_return(status: 200, body: response_body)
       end
 
@@ -32,7 +32,6 @@ describe 'User' do
     end
 
     it 'can see links for 5 github repos' do
-
       within('#github') do
         within('#repos') do
           expect(page).to have_css('.github_link', count: 5)

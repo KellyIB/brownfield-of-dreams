@@ -11,11 +11,11 @@ describe 'User' do
       following_json = File.read('spec/fixtures/github_following.json')
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-      stub_request(:get, "https://api.github.com/user/repos?direction=asc&sort=created")
+      stub_request(:get, 'https://api.github.com/user/repos?direction=asc&sort=created')
         .to_return(status: 200, body: repo_json)
-      stub_request(:get, "https://api.github.com/user/followers")
+      stub_request(:get, 'https://api.github.com/user/followers')
         .to_return(status: 200, body: followers_json)
-      stub_request(:get, "https://api.github.com/user/following")
+      stub_request(:get, 'https://api.github.com/user/following')
         .to_return(status: 200, body: following_json)
 
       visit '/dashboard'

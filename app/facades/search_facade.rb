@@ -1,5 +1,4 @@
 class SearchFacade
-
   def initialize(user)
     @service = GithubService.new
     @user = user
