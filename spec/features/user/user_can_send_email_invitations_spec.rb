@@ -18,21 +18,21 @@ describe 'Registered user' do
 
     requests.zip(responses).each do |request, response_body|
       stub_request(:get, "https://api.github.com/user/#{request}")\
-        .with(headers: {"Authorization" => "token #{user.github_token}"})
+        .with(headers: { 'Authorization' => "token #{user.github_token}" })
         .to_return(status: 200, body: response_body)
     end
 
-    stub_request(:get, "https://api.github.com/users/test-user")\
-      .with(headers: {"Authorization" => "token #{user.github_token}"})
+    stub_request(:get, 'https://api.github.com/users/test-user')\
+      .with(headers: { 'Authorization' => "token #{user.github_token}" })
       .to_return(status: 200, body: user_json)
 
-    stub_request(:get, "https://api.github.com/users/i-dont-exist")\
-      .with(headers: {"Authorization" => "token #{user.github_token}"})
+    stub_request(:get, 'https://api.github.com/users/i-dont-exist')\
+      .with(headers: { 'Authorization' => "token #{user.github_token}" })
       .to_return(status: 200, body: user_json_2)
 
     visit dashboard_path
 
-    click_link "Send an Invite"
+    click_link 'Send an Invite'
 
     expect(current_path).to eq('/invite')
   end
@@ -43,7 +43,7 @@ describe 'Registered user' do
 
     expect(current_path).to eq(dashboard_path)
 
-    expect(page).to have_content("Successfully sent invite!")
+    expect(page).to have_content('Successfully sent invite!')
   end
 
   it 'gets feedback when sending invitation to invalid account' do
@@ -54,5 +54,4 @@ describe 'Registered user' do
 
     expect(page).to have_content("The Github user you selected doesn't have an email address associated with their account.")
   end
-
 end

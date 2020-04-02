@@ -1,6 +1,5 @@
 class Users::InvitationsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     search_facade = SearchFacade.new(current_user)

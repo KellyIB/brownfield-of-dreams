@@ -24,7 +24,7 @@ describe 'vister can create an account', :js do
     fill_in 'user[password]', with: password
     fill_in 'user[password_confirmation]', with: password
 
-    click_on'Create Account'
+    click_on 'Create Account'
 
     expect(current_path).to eq(dashboard_path)
 
@@ -35,7 +35,7 @@ describe 'vister can create an account', :js do
   end
 
   it ' visits the home page' do
-    user1 = create(:user, email: "jimbob@aol.com")
+    user1 = create(:user, email: 'jimbob@aol.com')
     email = 'jimbob@aol.com'
     first_name = ''
     last_name = ''
@@ -46,7 +46,7 @@ describe 'vister can create an account', :js do
 
     click_on 'Register'
 
-    expect(current_path).to eq("/register")
+    expect(current_path).to eq('/register')
 
     fill_in 'user[email]', with: email
     fill_in 'user[first_name]', with: first_name
@@ -54,7 +54,7 @@ describe 'vister can create an account', :js do
     fill_in 'user[password]', with: password
     fill_in 'user[password_confirmation]', with: password
 
-    click_on'Create Account'
+    click_on 'Create Account'
 
     expect(page).to have_content("Email has already been taken, First name can't be blank, and Last name can't be blank")
   end

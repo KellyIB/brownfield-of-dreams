@@ -5,12 +5,12 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:session][:email])
-    if user && user.authenticate(params[:session][:password])
+    if user&.authenticate(params[:session][:password])
       session[:user_id] = user.id
       flash[:success] = "Logged in as #{user.first_name} #{user.last_name}."
       redirect_to dashboard_path
     else
-      flash.now[:error] = "Looks like your email or password is invalid"
+      flash.now[:error] = 'Looks like your email or password is invalid'
       render :new
     end
   end
@@ -18,7 +18,8 @@ class SessionsController < ApplicationController
   def update
     user_data = request.env['omniauth.auth']
     current_user.update(
-      github_token: user_data[:credentials][:token], github_id: user_data[:uid])
+      github_token: user_data[:credentials][:token], github_id: user_data[:uid]
+    )
     redirect_to dashboard_path
   end
 

@@ -17,7 +17,7 @@ class Admin::VideosController < Admin::BaseController
       video.save
 
       flash[:success] = 'Successfully created video.'
-    rescue 
+    rescue StandardError
       flash[:error] = errors.full_messages.to_sentence
     end
 
@@ -26,11 +26,11 @@ class Admin::VideosController < Admin::BaseController
 
   private
 
-    def video_params
-      params.permit(:position)
-    end
+  def video_params
+    params.permit(:position)
+  end
 
-    def new_video_params
-      params.require(:video).permit(:title, :description, :video_id, :thumbnail)
-    end
+  def new_video_params
+    params.require(:video).permit(:title, :description, :video_id, :thumbnail)
+  end
 end

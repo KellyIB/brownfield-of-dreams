@@ -6,7 +6,7 @@ class Admin::TutorialsController < Admin::BaseController
   def create
     tutorial = Tutorial.create(tutorial_params)
     if tutorial.save
-      flash[:success] = "Successfully created tutorial."
+      flash[:success] = 'Successfully created tutorial.'
       redirect_to tutorial_path(tutorial.id)
     else
       flash[:error] = tutorial.errors.full_messages.to_sentence
@@ -29,14 +29,12 @@ class Admin::TutorialsController < Admin::BaseController
 
   def destroy
     tutorial = Tutorial.find(params[:id])
-    if tutorial.destroy
-      flash[:success] = "#{tutorial.title} tagged!"
-    end
+    flash[:success] = "#{tutorial.title} tagged!" if tutorial.destroy
     redirect_to admin_dashboard_path
   end
 
   private
-  
+
   def tutorial_params
     params.require(:tutorial).permit(:tag_list, :title, :description, :thumbnail)
   end
