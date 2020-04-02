@@ -10,6 +10,5 @@ describe "/get_started" do
     expect(page).to have_content("Filter results")
     expect(page).to have_content("Register to bookmark")
     expect(page).to have_link("Sign in")
-
   end
 end
