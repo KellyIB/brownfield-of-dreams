@@ -1,0 +1,14 @@
+{
+    "login": "i-dont-exist",
+    "id": 12340987,
+    "url": "https://api.github.com/users/i-dont-exist",
+    "html_url": "https://github.com/i-dont-exist",
+    "type": "User",
+    "name": "well i do but I dont have email",
+    "company": null,
+    "blog": "",
+    "location": "Denver, CO",
+    "email": null,
+    "hireable": null,
+    "bio": null
+}

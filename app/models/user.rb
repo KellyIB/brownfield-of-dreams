@@ -11,11 +11,6 @@ class User < ApplicationRecord
 
   before_create :set_confirmation_token
 
-  def friend?(id)
-    friend = User.find_by(github_id: id)
-    friends.include?(friend)
-  end
-
   def sorted_bookmarks
     videos.order(:tutorial_id, :position)
   end
@@ -24,6 +19,11 @@ class User < ApplicationRecord
     self.status = 'active'
     self.confirmation_token = nil
     save
+  end
+
+  def friendable?(follower)
+    user = User.find_by(github_id: follower.id)
+    !user.nil? && !friends.include?(user)
   end
 
   private
