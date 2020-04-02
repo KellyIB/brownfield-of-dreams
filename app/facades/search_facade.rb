@@ -25,4 +25,9 @@ class SearchFacade
       Follower.new(followed_attributes)
     end
   end
+
+  def get_user(user_handle)
+    user_data = @service.get_user_data(@user, user_handle)
+    GithubUser.new(user_data)
+  end
 end
