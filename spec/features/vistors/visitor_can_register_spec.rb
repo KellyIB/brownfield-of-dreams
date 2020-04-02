@@ -6,7 +6,6 @@ describe 'vister can create an account', :js do
     first_name = 'Jim'
     last_name = 'Bob'
     password = 'password'
-    password_confirmation = 'password'
 
     visit '/'
 
@@ -35,12 +34,11 @@ describe 'vister can create an account', :js do
   end
 
   it ' visits the home page' do
-    user1 = create(:user, email: 'jimbob@aol.com')
+    create(:user, email: 'jimbob@aol.com')
     email = 'jimbob@aol.com'
     first_name = ''
     last_name = ''
     password = 'password'
-    password_confirmation = 'password'
 
     visit '/'
 

@@ -1,4 +1,4 @@
-class Users::ActivationController < ApplicationController
+class Users::ActivationController < Users::BaseController
   def update
     user = User.find_by(confirmation_token: params[:token])
     if user

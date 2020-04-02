@@ -6,9 +6,10 @@ class Admin::VideosController < Admin::BaseController
       video     = tutorial.videos.new(new_video_params.merge(thumbnail: thumbnail))
 
       video.save
+
       flash[:success] = 'Successfully created video.'
-    rescue # Sorry about this. We should get more specific instead of swallowing all errors.
-      flash[:error] = "Unable to create video."
+    rescue StandardError
+      flash[:error] = 'Unable to create video.'
     end
 
     redirect_to edit_admin_tutorial_path(id: tutorial.id)
@@ -16,11 +17,7 @@ class Admin::VideosController < Admin::BaseController
 
   private
 
-  def video_params
-    params.permit(:position)
-  end
-
-  def new_video_params
-    params.require(:video).permit(:title, :description, :video_id, :thumbnail)
-  end
+    def new_video_params
+      params.require(:video).permit(:title, :description, :video_id, :thumbnail)
+    end
 end
