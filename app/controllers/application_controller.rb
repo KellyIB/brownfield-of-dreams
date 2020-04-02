@@ -17,5 +17,4 @@ class ApplicationController < ActionController::Base
   def tutorial_name(id)
     Tutorial.find(id).title
   end
-
 end
