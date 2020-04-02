@@ -33,8 +33,8 @@ Rails.application.routes.draw do
   get '/auth/github', as: 'github_login'
   get '/auth/:provider/callback', to: 'sessions#update'
 
-  # get '/about', to: 'about#show'
-  # get '/get_started', to: 'get_started#show'
+  get '/about', to: 'about#show'
+  get '/get_started', to: 'get_started#show'
 
   # Is this being used?
   get '/video', to: 'video#show'
