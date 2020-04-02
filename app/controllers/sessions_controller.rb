@@ -18,8 +18,7 @@ class SessionsController < ApplicationController
   def update
     user_data = request.env['omniauth.auth']
     current_user.update(
-      github_token: user_data[:credentials][:token],
-      github_id: user_data[:uid])
+      github_token: user_data[:credentials][:token], github_id: user_data[:uid])
     redirect_to dashboard_path
   end
 
@@ -27,5 +26,4 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to root_path
   end
-
 end
